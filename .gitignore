@@ -3,6 +3,4 @@
 .idea
 .DS_Store
 build
-capture
 local.properties
-*.apk

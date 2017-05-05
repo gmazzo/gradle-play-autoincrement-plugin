@@ -1,0 +1,29 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenLocal()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.1'
+        classpath System.getProperty('PLUGIN_DEPENDENCY')
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'com.github.gmazzo.play-autoincrement'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '25.0.2'
+
+    defaultConfig {
+        versionCode 1
+        versionName '1.0'
+        minSdkVersion 25
+        targetSdkVersion 25
+    }
+}
+
+autoincrement {
+    apiFile "$projectDir/google-play-api.json"
+}

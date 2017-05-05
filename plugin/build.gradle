@@ -1,6 +1,9 @@
-apply plugin: 'groovy'
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'com.github.dcendents.android-maven'
+plugins {
+    id 'groovy'
+    id 'java-gradle-plugin'
+    id 'maven'
+    id 'com.jfrog.bintray' version '1.7.3'
+}
 
 def repoName = 'gradle-play-autoincrement-plugin'
 def repoDesc = 'An Android-Gradle plugin to set the build version based on the last APK uploaded on PlayStore'
@@ -8,14 +11,18 @@ def repoUrl = "https://github.com/gmazzo/$repoName"
 def repoTags = ['android', 'gradle', 'version', 'apk', 'versionCode', 'autoincrement']
 
 dependencies {
-    compile gradleApi()
+    compile 'com.android.tools.build:gradle:2.2.3'
+    compile 'com.google.apis:google-api-services-androidpublisher:v2-rev41-1.22.0'
 
     testCompile 'junit:junit:4.12'
 }
 
-jar {
-    from {
-        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+gradlePlugin {
+    plugins {
+        autoincrement {
+            id = 'com.github.gmazzo.play-autoincrement'
+            implementationClass = 'com.github.gmazzo.gradle.plugins.PlayAutoincrementPlugin'
+        }
     }
 }
 
@@ -41,7 +48,6 @@ install {
     repositories.mavenInstaller {
         pom {
             project {
-                packaging 'aar'
                 name repoDesc
                 url repoUrl
             }
@@ -62,4 +68,12 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
     archives javadocJar
     archives sourcesJar
+}
+
+// for functional testing
+test {
+    dependsOn install
+    doFirst {
+        systemProperty 'PLUGIN_DEPENDENCY', "${project.group}:play-autoincrement-plugin:${project.version}"
+    }
 }
