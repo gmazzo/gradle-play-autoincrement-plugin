@@ -17,13 +17,15 @@ public class PlayAutoincrementPlugin implements Plugin<Project> {
 
         def android = project.extensions.getByType(AppExtension)
         def extension = project.extensions.create('autoincrement', PlayAutoincrementPluginExtension)
+        def accessor = new APIAccessor(extension)
 
         android.applicationVariants.all { ApplicationVariant variant ->
             def variantName = variant.name.capitalize()
             def taskName = "computeNext${variantName}VersionCode"
 
             def task = project.tasks.create(taskName, ComputeNextVersionCodeTask)
-            task.apiAccessor = new APIAccessor(extension.apiFile)
+            task.extension = extension
+            task.accessor = accessor
             task.variant = variant
             variant.preBuild.dependsOn task
         }

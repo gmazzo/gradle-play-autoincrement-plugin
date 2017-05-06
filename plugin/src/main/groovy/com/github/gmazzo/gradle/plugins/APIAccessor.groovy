@@ -6,15 +6,17 @@ import com.google.api.services.androidpublisher.AndroidPublisher
 import com.google.api.services.androidpublisher.AndroidPublisherScopes
 
 public class APIAccessor {
-    private final File apiFile
+    private final PlayAutoincrementPluginExtension extension
     private AndroidPublisher publisher
 
-    public APIAccessor(File apiFile) {
-        this.apiFile = apiFile
+    public APIAccessor(PlayAutoincrementPluginExtension extension) {
+        this.extension = extension
     }
 
     public AndroidPublisher getPublisher() throws IOException {
         if (publisher == null) {
+            File apiFile = extension.apiFile
+
             if (apiFile == null) {
                 throw new IllegalArgumentException("Cannot connect with PlayStore API: no 'apiFile' was provided")
 
@@ -25,7 +27,9 @@ public class APIAccessor {
             GoogleCredential credential = GoogleCredential.fromStream(apiFile.newInputStream())
             Credential scoped = credential.createScoped([AndroidPublisherScopes.ANDROIDPUBLISHER])
 
-            publisher = new AndroidPublisher.Builder(scoped.transport, scoped.jsonFactory, scoped).build()
+            publisher = new AndroidPublisher.Builder(scoped.transport, scoped.jsonFactory, scoped)
+                    .setApplicationName('play-autoincrement-plugin')
+                    .build()
         }
         return publisher;
     }
