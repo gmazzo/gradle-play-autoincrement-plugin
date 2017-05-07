@@ -5,11 +5,13 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.1'
+        classpath 'com.github.triplet.gradle:play-publisher:1.2.0'
         classpath System.getProperty('PLUGIN_DEPENDENCY')
     }
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'com.github.triplet.play'
 apply plugin: 'com.github.gmazzo.play-autoincrement'
 
 android {
@@ -24,6 +26,6 @@ android {
     }
 }
 
-autoincrement {
-    apiFile "$projectDir/google-play-api.json"
+play {
+    jsonFile = new File("$projectDir/google-play-api.json")
 }
