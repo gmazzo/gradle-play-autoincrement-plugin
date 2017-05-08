@@ -26,3 +26,18 @@ autoincrement {
 ```
 
 NOTE: this plugin will inherit its configuration from [gradle-play-publisher](https://github.com/Triple-T/gradle-play-publisher) if you are using it
+
+## Customization
+Define a custom logic for version code increasing:
+```
+autoincrement {
+    codeFormatter { int code, ApplicationVariant variant -> code + 1 }
+}
+```
+
+Define a custom logic for version naming:
+```
+autoincrement {
+    codeFormatter { int code, ApplicationVariant variant -> "${variant.versionName}.$code" }
+}
+```

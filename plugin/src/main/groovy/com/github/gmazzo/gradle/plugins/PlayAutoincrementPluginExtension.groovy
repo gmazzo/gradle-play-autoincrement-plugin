@@ -31,6 +31,14 @@ class PlayAutoincrementPluginExtension {
         jsonFile(new File(file))
     }
 
+    void codeFormatter(Closure<Integer> codeFormatter) {
+        this.codeFormatter = codeFormatter
+    }
+
+    void nameFormatter(Closure<String> nameFormatter) {
+        this.nameFormatter = nameFormatter
+    }
+
     void releaseOnly(boolean releaseOnly) {
         this.releaseOnly = releaseOnly
     }
