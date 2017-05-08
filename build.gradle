@@ -2,7 +2,4 @@ allprojects {
     repositories {
         jcenter()
     }
-
-    group = 'com.github.gmazzo.gradle.plugins'
-    version = '0.1'
 }
