@@ -28,10 +28,10 @@ public class PlayAutoincrementPlugin implements Plugin<Project> {
 
             def task = project.tasks.create(taskName, ComputeNextVersionCodeTask)
             task.extension = extension
+            task.variant = variant
             task.accessor = ChainedAPIAccessor.of(
                     new PlayPluginAPIAccessor(project, android, variant),
                     extensionAccessor)
-            task.variant = variant
             task.dependsOn project.tasks.preBuild
             task.onlyIf { !extension.releaseOnly || !variant.buildType.debuggable }
             variant.preBuild.dependsOn task

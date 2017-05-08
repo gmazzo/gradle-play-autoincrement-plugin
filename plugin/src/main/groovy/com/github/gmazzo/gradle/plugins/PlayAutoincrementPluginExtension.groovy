@@ -21,6 +21,8 @@ class PlayAutoincrementPluginExtension {
 
     boolean releaseOnly = true
 
+    boolean silentFail = true
+
     void jsonFile(File file) {
         jsonFile = file
     }
@@ -31,6 +33,10 @@ class PlayAutoincrementPluginExtension {
 
     void releaseOnly(boolean releaseOnly) {
         this.releaseOnly = releaseOnly
+    }
+
+    void silentFail(boolean silentFail) {
+        this.silentFail = silentFail
     }
 
 }
