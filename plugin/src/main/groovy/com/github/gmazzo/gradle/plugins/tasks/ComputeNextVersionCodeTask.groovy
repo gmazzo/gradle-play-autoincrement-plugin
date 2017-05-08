@@ -1,7 +1,7 @@
 package com.github.gmazzo.gradle.plugins.tasks
 
 import com.android.build.gradle.api.ApplicationVariant
-import com.github.gmazzo.gradle.plugins.APIAccessor
+import com.github.gmazzo.gradle.plugins.api.APIAccessor
 import com.github.gmazzo.gradle.plugins.PlayAutoincrementPluginExtension
 import com.google.api.services.androidpublisher.model.ApksListResponse
 import com.google.api.services.androidpublisher.model.AppEdit
