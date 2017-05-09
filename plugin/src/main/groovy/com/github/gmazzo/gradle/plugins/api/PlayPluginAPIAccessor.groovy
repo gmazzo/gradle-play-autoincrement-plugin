@@ -8,7 +8,7 @@ import org.gradle.api.Project
 /**
  * Adds support for retrieving configuration from 'com.github.triplet.play' plugin
  */
-class PlayPluginAPIAccessor extends APIAccessor {
+public class PlayPluginAPIAccessor extends APIAccessor {
     private final Project project
     private final AppExtension android
     private final ApplicationVariant variant
@@ -20,7 +20,7 @@ class PlayPluginAPIAccessor extends APIAccessor {
     }
 
     @Override
-    AndroidPublisher providePublisher() {
+    protected AndroidPublisher providePublisher() {
         if (project.plugins.hasPlugin('com.github.triplet.play')) {
             def extension = project.extensions.getByType(Class.forName('de.triplet.gradle.play.PlayPublisherPluginExtension'))
 

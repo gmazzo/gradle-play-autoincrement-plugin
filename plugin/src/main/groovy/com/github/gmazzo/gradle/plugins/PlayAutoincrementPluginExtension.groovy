@@ -10,6 +10,20 @@ class PlayAutoincrementPluginExtension {
     File jsonFile
 
     /**
+     * A callback for providing an {@link java.io.InputStream} of the JSON PlayStore API key.
+     */
+    Closure<InputStream> jsonStream = {
+        if (jsonFile == null) {
+            throw new IllegalArgumentException("Cannot connect with PlayStore API: no 'jsonFile' was provided")
+
+        } else if (!jsonFile.exists()) {
+            throw new IllegalArgumentException("Cannot connect with PlayStore API: '${jsonFile.absolutePath}' does not exists")
+        }
+
+        return new FileInputStream(jsonFile)
+    }
+
+    /**
      * A callback for computing the next versionCode. Defaults to 'current + 1'.
      */
     Closure<Integer> codeFormatter = { int code, ApplicationVariant variant -> code + 1 }
@@ -32,6 +46,10 @@ class PlayAutoincrementPluginExtension {
 
     void jsonFile(String file) {
         jsonFile(new File(file))
+    }
+
+    void jsonStream(Closure<InputStream> jsonStream) {
+        this.jsonStream = jsonStream
     }
 
     void codeFormatter(Closure<Integer> codeFormatter) {

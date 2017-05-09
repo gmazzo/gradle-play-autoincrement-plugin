@@ -27,6 +27,14 @@ autoincrement {
 
 NOTE: this plugin will inherit its configuration from [gradle-play-publisher](https://github.com/Triple-T/gradle-play-publisher) if you are using it
 
+### Advances configuration
+This plugin supports low-level GoogleCredentials API by providing an InputStream with the JSON API Key content.
+```
+autoincrement {
+    jsonStream 'http://myserver/google-api-key.json'.toURL().openStream()
+}
+```
+
 ### Target specific variants
 By default, the plugin will only target any non-debuggable build variant.
 You can customize this behaviour with the `targetVariants` closure.

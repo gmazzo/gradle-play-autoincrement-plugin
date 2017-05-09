@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'gmazzo'
-version = '0.3'
+version = '0.4'
 
 def pluginId = 'com.github.gmazzo.play-autoincrement'
 def repoName = 'gradle-play-autoincrement-plugin'
