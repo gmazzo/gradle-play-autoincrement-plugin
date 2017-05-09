@@ -6,7 +6,7 @@ On your `build.gradle` add:
 ```
 buildscript {
     repositories {
-        jcenter()
+        maven { url 'https://plugins.gradle.org/m2/' }
     }
     dependencies {
         classpath 'gradle.plugin.gmazzo:play-autoincrement-plugin:+'
