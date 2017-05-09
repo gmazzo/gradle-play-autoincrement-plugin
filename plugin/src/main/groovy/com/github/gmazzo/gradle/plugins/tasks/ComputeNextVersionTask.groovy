@@ -8,7 +8,7 @@ import com.google.api.services.androidpublisher.model.AppEdit
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 
-public class ComputeNextVersionCodeTask extends DefaultTask {
+public class ComputeNextVersionTask extends DefaultTask {
 
     PlayAutoincrementPluginExtension extension
 
@@ -17,7 +17,7 @@ public class ComputeNextVersionCodeTask extends DefaultTask {
     ApplicationVariant variant
 
     @TaskAction
-    public void increaseVersionCode() {
+    public void increaseVersion() {
         try {
             def publisher = accessor.publisher
             def packageName = variant.applicationId
@@ -36,11 +36,11 @@ public class ComputeNextVersionCodeTask extends DefaultTask {
             }
 
         } catch (Exception e) {
-            if (extension.silentFail) {
-                logger.error("$name failed!", e)
+            if (extension.failOnErrors) {
+                throw e
 
             } else {
-                throw e
+                logger.error("$name failed!", e)
             }
         }
     }

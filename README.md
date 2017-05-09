@@ -27,17 +27,38 @@ autoincrement {
 
 NOTE: this plugin will inherit its configuration from [gradle-play-publisher](https://github.com/Triple-T/gradle-play-publisher) if you are using it
 
-## Customization
-Define a custom logic for version code increasing:
+### Target specific variants
+By default, the plugin will only target any non-debuggable build variant.
+You can customize this behaviour with the `targetVariants` closure.
+
+For example, an hypothetical `flavor1Release` variant only do:
 ```
 autoincrement {
-    codeFormatter { int code, ApplicationVariant variant -> code + 1 }
+    targetVariants { variant -> variant.name == 'flavor1Release' }
 }
 ```
 
-Define a custom logic for version naming:
+## Customization
+### Custom logic for version code calculation:
 ```
 autoincrement {
-    codeFormatter { int code, ApplicationVariant variant -> "${variant.versionName}.$code" }
+    codeFormatter { code, variant -> code + 1 }
+}
+```
+Set it to `null` for leave the versionCode untouched
+
+### Custom logic for version naming:
+```
+autoincrement {
+    nameFormatter { code, variant -> "${variant.versionName}.$code" }
+}
+```
+Set it to `null` for leave the versionName untouched
+
+## Fail on errors
+By default, the plugin will ignore any error and leave the version untouched. You can change this by setting:
+```
+autoincrement {
+    failOnErrors true
 }
 ```

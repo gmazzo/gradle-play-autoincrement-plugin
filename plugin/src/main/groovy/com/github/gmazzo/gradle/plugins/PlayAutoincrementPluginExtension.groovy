@@ -19,9 +19,12 @@ class PlayAutoincrementPluginExtension {
      */
     Closure<String> nameFormatter = { int code, ApplicationVariant variant -> "${variant.versionName}.$code" }
 
-    boolean releaseOnly = true
+    /**
+     * A callback for determining which variants this target should apply. By default, only targets releases
+     */
+    Closure<Boolean> targetVariants = { ApplicationVariant variant -> !variant.buildType.debuggable }
 
-    boolean silentFail = true
+    boolean failOnErrors = false
 
     void jsonFile(File file) {
         jsonFile = file
@@ -39,12 +42,12 @@ class PlayAutoincrementPluginExtension {
         this.nameFormatter = nameFormatter
     }
 
-    void releaseOnly(boolean releaseOnly) {
-        this.releaseOnly = releaseOnly
+    void targetVariants(Closure<Boolean> targetVariants) {
+        this.targetVariants = targetVariants
     }
 
-    void silentFail(boolean silentFail) {
-        this.silentFail = silentFail
+    void failOnErrors(boolean failOnErrors) {
+        this.failOnErrors = failOnErrors
     }
 
 }

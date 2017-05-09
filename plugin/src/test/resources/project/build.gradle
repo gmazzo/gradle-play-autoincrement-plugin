@@ -29,3 +29,7 @@ android {
 play {
     jsonFile = new File("$projectDir/google-play-api.json")
 }
+
+autoincrement {
+    nameFormatter { code, variant -> "${variant.versionName}.$code-${new Date()}" }
+}

@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'gmazzo'
-version = '0.2'
+version = '0.3'
 
 def pluginId = 'com.github.gmazzo.play-autoincrement'
 def repoName = 'gradle-play-autoincrement-plugin'
@@ -24,8 +24,11 @@ dependencies {
 // for functional testing
 test {
     dependsOn install
-    doFirst {
-        systemProperty 'PLUGIN_DEPENDENCY', "${project.group}:play-autoincrement-plugin:${project.version}"
+}
+
+install {
+    repositories.mavenInstaller {
+        pom.groupId = "gradle.plugin.${project.group}"
     }
 }
 

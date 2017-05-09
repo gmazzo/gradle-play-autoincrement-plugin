@@ -22,12 +22,12 @@ public class BuildLogicFunctionalTest {
     }
 
     @Test
-    public void testComputeNextVersionCode() throws IOException {
+    public void testComputeNextVersion() throws IOException {
         BuildResult result = runner
-                .withArguments("computeNextDebugVersionCode")
+                .withArguments("computeNextReleaseVersion")
                 .build();
 
-        assertEquals(result.task(":computeNextDebugVersionCode").getOutcome(), TaskOutcome.SUCCESS);
+        assertEquals(result.task(":computeNextReleaseVersion").getOutcome(), TaskOutcome.SUCCESS);
     }
 
 }

@@ -17,7 +17,7 @@ public class ChainedAPIAccessor extends APIAccessor {
     AndroidPublisher providePublisher() {
         for (Iterator<APIAccessor> it = accessors.iterator(); it.hasNext();) {
             try {
-                def publisher = ++it.providePublisher()
+                def publisher = it.next().providePublisher()
                 if (publisher) {
                     return publisher
                 }
