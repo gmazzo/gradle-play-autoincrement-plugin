@@ -9,7 +9,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.github.gmazzo.gradle.plugins:play-autoincrement-plugin:0.1'
+        classpath 'com.github.gmazzo.gradle.plugins:play-autoincrement-plugin:+'
     }
 }
 
