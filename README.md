@@ -15,6 +15,7 @@ buildscript {
 
 apply plugin: 'com.github.gmazzo.play-autoincrement'
 ```
+Visit [Gradle plugins](https://plugins.gradle.org/plugin/com.github.gmazzo.play-autoincrement) for further details
 
 ## Configuration
 On your `build.gradle` add:
