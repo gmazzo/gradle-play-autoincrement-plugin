@@ -4,14 +4,14 @@ import com.google.api.services.androidpublisher.AndroidPublisher;
 
 import java.io.IOException;
 
-public class ChainedAPIAccessor extends APIAccessor {
+public class CombinedAPIAccessor extends APIAccessor {
     private final APIAccessor accessors[];
 
-    public static ChainedAPIAccessor of(APIAccessor... accessors) {
-        return new ChainedAPIAccessor(accessors);
+    public static CombinedAPIAccessor of(APIAccessor... accessors) {
+        return new CombinedAPIAccessor(accessors);
     }
 
-    private ChainedAPIAccessor(APIAccessor... accessors) {
+    private CombinedAPIAccessor(APIAccessor... accessors) {
         this.accessors = accessors;
     }
 

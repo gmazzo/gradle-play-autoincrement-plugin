@@ -3,7 +3,7 @@ package com.github.gmazzo.gradle.plugins
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.api.ApplicationVariant
-import com.github.gmazzo.gradle.plugins.api.ChainedAPIAccessor
+import com.github.gmazzo.gradle.plugins.api.CombinedAPIAccessor
 import com.github.gmazzo.gradle.plugins.api.ExtensionAPIAccessor
 import com.github.gmazzo.gradle.plugins.api.PlayPluginAPIAccessor
 import com.github.gmazzo.gradle.plugins.tasks.ComputeNextVersionTask
@@ -30,7 +30,7 @@ public class PlayAutoincrementPlugin implements Plugin<Project> {
                 def task = project.tasks.create(taskName, ComputeNextVersionTask)
                 task.extension = extension
                 task.variant = variant
-                task.accessor = ChainedAPIAccessor.of(
+                task.accessor = CombinedAPIAccessor.of(
                         new PlayPluginAPIAccessor(project, android, variant),
                         extensionAccessor)
                 task.dependsOn variant.preBuild
