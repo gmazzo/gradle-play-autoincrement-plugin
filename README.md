@@ -35,7 +35,7 @@ autoincrement {
 NOTE: this plugin will inherit its configuration from [gradle-play-publisher](https://github.com/Triple-T/gradle-play-publisher#authentication) if you are using it
 
 ### Advanced configuration
-This plugin supports low-level GoogleCredentials API by providing an InputStream with the JSON API Key content.
+This plugin supports low-level GoogleCredentials API by providing an InputStream with the JSON API Key content:
 ```groovy
 autoincrement {
     jsonStream 'http://myserver/google-api-key.json'.toURL().openStream()
