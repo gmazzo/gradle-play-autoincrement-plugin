@@ -24,9 +24,6 @@ dependencies {
 // for functional testing
 test {
     dependsOn install
-    doFirst {
-        systemProperty 'PLUGIN_DEPENDENCY', "gradle.plugin.${project.group}:play-autoincrement-plugin:${project.version}"
-    }
     testLogging.showStandardStreams = true
 }
 
