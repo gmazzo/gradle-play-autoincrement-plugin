@@ -21,7 +21,7 @@ The plugin creates one task per `build-variant. In a simple Android project you 
 * <code>computeNext<i>Debug</i>Version</code>
 * <code>computeNext<i>Release</i>Version</code>
 
-Be aware of those tasks will run in a **very early** step on your Gradle build (between <code>pre<i>Release</i>Build</code> and <code>check<i>Release</i>Manifest</code> specifically).
+Be aware of those tasks will run in a **very early** step on your Gradle build (between <code>pre<i>Release</i>Build</code> and <code>check<i>Release</i>Manifest</code> tasks).
 If your Gradle Sync fails on Android Studio (due an Internet unavailability for example), see the section [Fail on errors](#fail-on-errors)
 
 ## Configuration
