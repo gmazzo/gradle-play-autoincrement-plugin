@@ -1,6 +1,7 @@
 package com.github.gmazzo.gradle.plugins
 
 import com.android.build.gradle.api.ApplicationVariant
+import com.github.gmazzo.gradle.plugins.tasks.ComputeNextVersionTask
 
 class PlayAutoincrementPluginExtension {
 
@@ -38,7 +39,21 @@ class PlayAutoincrementPluginExtension {
      */
     Closure<Boolean> targetVariants = { ApplicationVariant variant -> !variant.buildType.debuggable }
 
-    boolean failOnErrors = false
+    boolean failOnErrors = true
+
+    /**
+     * A callback for handling exception during task execution
+     */
+    Closure<Void> failHandler = { Throwable t, ComputeNextVersionTask task ->
+        task.with {
+            if (extension.failOnErrors) {
+                throw t
+
+            } else {
+                logger.error("$name failed!", t)
+            }
+        }
+    }
 
     void jsonFile(File file) {
         jsonFile = file
@@ -66,6 +81,10 @@ class PlayAutoincrementPluginExtension {
 
     void failOnErrors(boolean failOnErrors) {
         this.failOnErrors = failOnErrors
+    }
+
+    void failHandler(Closure<Void> failHandler) {
+        this.failHandler = failHandler
     }
 
 }

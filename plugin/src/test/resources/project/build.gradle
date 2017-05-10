@@ -31,5 +31,5 @@ play {
 }
 
 autoincrement {
-    nameFormatter { code, variant -> "${variant.versionName}.$code-${new Date()}" }
+    nameFormatter { code, variant -> "${variant.versionName}.$code-${new Date().format('yyyyMMdd-HHmmss')}" }
 }

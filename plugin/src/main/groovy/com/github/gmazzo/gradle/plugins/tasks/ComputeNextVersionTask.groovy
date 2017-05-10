@@ -35,13 +35,8 @@ public class ComputeNextVersionTask extends DefaultTask {
                 flavor.versionName = extension.nameFormatter.call(code, variant)
             }
 
-        } catch (Exception e) {
-            if (extension.failOnErrors) {
-                throw e
-
-            } else {
-                logger.error("$name failed!", e)
-            }
+        } catch (Throwable t) {
+            extension.failHandler.call(t, this)
         }
     }
 

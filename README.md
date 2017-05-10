@@ -65,15 +65,15 @@ Set it to `null` for leave the versionCode untouched
 ### Custom logic for version naming:
 ```groovy
 autoincrement {
-    nameFormatter { code, variant -> "${variant.versionName}.$code" }
+    nameFormatter { code, variant -> "${variant.versionName}.$code-${new Date().format('yyyyMMdd-HHmmss')}" }
 }
 ```
 Set it to `null` for leave the versionName untouched
 
 ## Fail on errors
-By default, the plugin will ignore any error and leave the version untouched. You can change this by setting:
+By default, the plugin will fail on any error and leave the version untouched. You can change this by setting:
 ```groovy
 autoincrement {
-    failOnErrors true
+    failOnErrors false
 }
 ```
