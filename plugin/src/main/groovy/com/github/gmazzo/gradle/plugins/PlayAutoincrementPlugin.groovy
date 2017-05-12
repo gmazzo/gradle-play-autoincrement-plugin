@@ -28,6 +28,8 @@ public class PlayAutoincrementPlugin implements Plugin<Project> {
                 def taskName = "computeNext${variantName}Version"
 
                 def task = project.tasks.create(taskName, ComputeNextVersionTask)
+                task.description = "Computes the next version code and name for variant $variantName based on the lastest APK in the Play Store"
+                task.group = 'Play Store'
                 task.extension = extension
                 task.variant = variant
                 task.accessor = CombinedAPIAccessor.of(
