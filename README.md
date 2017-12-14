@@ -31,8 +31,8 @@ autoincrement {
     jsonFile '<path-to-google-api-json-token>'
 }
 ```
-
-NOTE: this plugin will inherit its configuration from [gradle-play-publisher](https://github.com/Triple-T/gradle-play-publisher#authentication) if you are using it
+### Working with Triple-T/gradle-play-publisher
+If you already have configured (or going to) the [gradle-play-publisher](https://github.com/Triple-T/gradle-play-publisher#authentication), then you don't need to add the `autoincrement` closure the script. Just apply the plugin that it will pick the configurtion from Triple-T's `play` closure.
 
 ### Advanced configuration
 This plugin supports low-level GoogleCredentials API by providing an InputStream with the JSON API Key content:
