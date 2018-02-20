@@ -1,3 +1,7 @@
-include ':plugin'
+include ':sample'
 
-project(':plugin').name = 'play-autoincrement-plugin'
+includeBuild('plugin') {
+    dependencySubstitution {
+        substitute module('gradle.plugin.gmazzo:play-autoincrement-plugin') with project(':')
+    }
+}

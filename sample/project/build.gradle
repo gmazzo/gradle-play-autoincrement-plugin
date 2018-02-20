@@ -4,9 +4,9 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.1'
+        classpath 'com.android.tools.build:gradle:3.0.1'
         classpath 'com.github.triplet.gradle:play-publisher:1.2.0'
-        classpath 'gradle.plugin.gmazzo:play-autoincrement-plugin:+'
+        classpath 'gradle.plugin.gmazzo:play-autoincrement-plugin:<local>'
     }
 }
 

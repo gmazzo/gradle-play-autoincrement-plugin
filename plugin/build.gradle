@@ -8,6 +8,8 @@ plugins {
 group = 'gmazzo'
 version = '0.6'
 
+archivesBaseName = 'play-autoincrement-plugin'
+
 def pluginId = 'com.github.gmazzo.play-autoincrement'
 def repoName = 'gradle-play-autoincrement-plugin'
 def repoDesc = 'An Android-Gradle plugin to set the build version based on the last APK uploaded on PlayStore'
@@ -20,6 +22,11 @@ sourceSets {
             srcDir "$rootDir/sample"
         }
     }
+}
+
+repositories {
+    google()
+    jcenter()
 }
 
 dependencies {
